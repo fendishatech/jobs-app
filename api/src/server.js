@@ -2,28 +2,12 @@ const express = require("express");
 const sequelize = require("./services/models/config/database");
 const dotenv = require("dotenv");
 const cors = require("cors");
-/* --------------------------------- multer --------------------------------- */
 const multer = require("multer");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-
-// Middleware
-const upload = multer({ storage: storage });
-
-app.post("/upload", upload.single("image"), (req, res, next) => {
-  // Handle the uploaded file
-  res.send("File uploaded successfully");
-});
-
-/* --------------------------------- multer --------------------------------- */
 const routes = require("./services/routes");
+
+// Import Multer config object
+const multerConfig = require("./utils/multerConfig");
 
 const app = express();
 
@@ -36,6 +20,21 @@ app.use(
     origin: "http://localhost:5173",
   })
 );
+// Set up multer middleware with config options
+const upload = multer(multerConfig);
+
+/* ------------------------------ multer usage ------------------------------ */
+// router.post("/blog", upload.single("cover_image"), (req, res, next) => {
+//   const { title, content } = req.body;
+//   const imageUrl = req.file.path;
+
+//   // Create new blog post in database with title, content, and imageUrl
+//   // ...
+
+//   res.send("Blog post created successfully!");
+// });
+
+/* ------------------------------ multer usage ------------------------------ */
 
 // ROUTES
 app.use("/", routes);
