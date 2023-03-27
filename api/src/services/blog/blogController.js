@@ -5,7 +5,10 @@ const insertBlog = async (req, res) => {
   const { title, cover_image, content } = req.body;
   try {
     const newBlog = await Blog.create({ title, cover_image, content });
-    return res.status(200).json(newBlog);
+    return res.status(200).json({
+      success: true,
+      payload: newBlog,
+    });
   } catch (err) {
     return res.status(400).json({ message: err.message });
   }
@@ -15,7 +18,10 @@ const insertBlog = async (req, res) => {
 const getBlogs = async (req, res) => {
   try {
     const blogs = await Blog.findAll();
-    return res.status(200).json(blogs);
+    return res.status(200).json({
+      success: true,
+      payload: blogs,
+    });
   } catch (err) {
     return res.status(400).json({ message: err.message });
   }
@@ -27,7 +33,10 @@ const getBlog = async (req, res) => {
   try {
     const blog = await Blog.findByPk(id);
     if (blog) {
-      return res.status(200).json(blog);
+      return res.status(200).json({
+        success: true,
+        payload: blog,
+      });
     } else {
       return res.status(404).json({ message: "Blog post not found" });
     }
@@ -44,7 +53,10 @@ const updateBlog = async (req, res) => {
     const blog = await Blog.findByPk(id);
     if (blog) {
       await blog.update({ title, cover_image, content });
-      return res.status(200).json(blog);
+      return res.status(200).json({
+        success: true,
+        payload: blog,
+      });
     } else {
       return res.status(404).json({ message: "Blog post not found" });
     }
@@ -60,7 +72,9 @@ const deleteBlog = async (req, res) => {
     const blog = await Blog.findByPk(id);
     if (blog) {
       await blog.destroy();
-      return res.status(200).json({ message: "Blog post deleted" });
+      return res
+        .status(200)
+        .json({ success: true, message: "Blog post deleted" });
     } else {
       return res.status(404).json({ message: "Blog post not found" });
     }

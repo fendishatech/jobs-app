@@ -1,7 +1,9 @@
 const Joi = require("joi");
 
 const schema = Joi.object({
-  name: Joi.string().min(3).max(30).required(),
+  title: Joi.string().required(),
+  cover_image: Joi.string().required(),
+  content: Joi.string().required(),
 });
 
 const blogValidator = (req, res, next) => {
@@ -20,6 +22,4 @@ const blogValidator = (req, res, next) => {
   }
 };
 
-module.exports = {
-  blogValidator,
-};
+module.exports = blogValidator;

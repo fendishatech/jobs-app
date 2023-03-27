@@ -2,7 +2,27 @@ const express = require("express");
 const sequelize = require("./services/models/config/database");
 const dotenv = require("dotenv");
 const cors = require("cors");
+/* --------------------------------- multer --------------------------------- */
+const multer = require("multer");
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+// Middleware
+const upload = multer({ storage: storage });
+
+app.post("/upload", upload.single("image"), (req, res, next) => {
+  // Handle the uploaded file
+  res.send("File uploaded successfully");
+});
+
+/* --------------------------------- multer --------------------------------- */
 const routes = require("./services/routes");
 
 const app = express();
