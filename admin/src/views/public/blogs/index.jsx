@@ -13,16 +13,21 @@ const Blogs = () => {
     };
     getBlogs();
   }, []);
+
+  console.log(blogs.length);
   return (
     <div>
       <Link to={"/new_blog"} className="bg-teal-600 py-2 px-6">
         Add New Blog
       </Link>
+      <h1 className="m-2">Blogs</h1>
       {blogs.length > 0 &&
         blogs.map((blog, index) => {
-          <li className=" w-full h-[100px]" key={index}>
-            blog.title
-          </li>;
+          return (
+            <p className=" w-full h-[100px]" key={index}>
+              {blog.title}
+            </p>
+          );
         })}
     </div>
   );
