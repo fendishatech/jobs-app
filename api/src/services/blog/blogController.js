@@ -2,7 +2,8 @@ const Blog = require("../models/entities/blogModel");
 
 // CREATE route
 const insertBlog = async (req, res) => {
-  const { title, cover_image, content } = req.body;
+  const { title, content } = req.body;
+  const imageUrl = req.file.path;
   try {
     const newBlog = await Blog.create({ title, cover_image, content });
     return res.status(200).json({

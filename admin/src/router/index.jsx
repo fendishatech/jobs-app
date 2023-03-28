@@ -1,9 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Login, Register, PublicLayout, Home } from "../views";
+import {
+  Login,
+  Register,
+  PublicLayout,
+  Home,
+  Blogs,
+  NewBlog,
+  Jobs,
+} from "../views";
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: "/",
     element: <Login />,
   },
   {
@@ -15,8 +23,22 @@ const router = createBrowserRouter([
     element: <PublicLayout />,
     children: [
       {
-        path: "/",
+        path: "/home",
         element: <Home />,
+      },
+      // Blog Routes
+      {
+        path: "/blogs",
+        element: <Blogs />,
+      },
+      {
+        path: "/new_blog",
+        element: <NewBlog />,
+      },
+      // Job Routes
+      {
+        path: "/jobs",
+        element: <Jobs />,
       },
     ],
   },
