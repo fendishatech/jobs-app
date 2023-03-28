@@ -7,8 +7,8 @@ const router = express.Router();
 
 router.post(
   "/blogs/",
-  blogValidator,
   multerMiddleware.single("cover_image"),
+  blogValidator,
   blogController.insertBlog
 );
 router.get("/blogs/", blogController.getBlogs);

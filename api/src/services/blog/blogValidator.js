@@ -2,7 +2,6 @@ const Joi = require("joi");
 
 const schema = Joi.object({
   title: Joi.string().required(),
-  cover_image: Joi.string().required(),
   content: Joi.string().required(),
 });
 
