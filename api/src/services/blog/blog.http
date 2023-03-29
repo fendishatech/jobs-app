@@ -28,3 +28,7 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3333/api/blogs/2 HTTP/1.1
+
+# PAGINATION
+###
+GET http://localhost:3333/api/blogs?page=2 HTTP/1.1

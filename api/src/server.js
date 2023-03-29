@@ -26,6 +26,9 @@ const upload = multer(multerConfig);
 // ROUTES
 app.use("/", routes);
 
+// STATIC FILES
+app.use(express.static("public"));
+
 // DB AND SERVER
 /* ----------------------------- test connection ---------------------------- */
 async function testConn() {
