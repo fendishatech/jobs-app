@@ -27,7 +27,8 @@ const upload = multer(multerConfig);
 app.use("/", routes);
 
 // STATIC FILES
-app.use(express.static("public"));
+app.use("/public/images/blogs/", express.static("public/images/blogs/"));
+// app.use("/Images", express.static("./Images"));
 
 // DB AND SERVER
 /* ----------------------------- test connection ---------------------------- */

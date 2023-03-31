@@ -38,6 +38,7 @@ const Blogs = () => {
     getBlogs();
   }, [currentPage]);
 
+  console.log(blogs);
   if (!blogs) {
     return <h1>Loading ...</h1>;
   }
@@ -72,7 +73,12 @@ const Blogs = () => {
                 <div className="w-2/3">
                   <p>{blog.cover_image}</p>
                   <p>{blog.title}</p>
-                  other details ...
+                  <button
+                    onClick={() => handleDelete(blog.id)}
+                    className="px-4 py-2 bg-red-300"
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             );
